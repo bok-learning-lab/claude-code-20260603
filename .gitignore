@@ -185,8 +185,7 @@ htmlcov/
 # Jupyter
 .ipynb_checkpoints/
 
-# Generated artifacts
-output/
+
 
 # macOS
 .DS_Store
