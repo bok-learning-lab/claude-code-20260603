@@ -10,21 +10,20 @@ This folder is intended to be opened as a standalone Claude Code project — `cd
 
 Read in this order:
 
-1. [walkthrough.md](walkthrough.md) — the conversational history that produced this project. Five-plus steps, prompts shown verbatim, with the prompting principles called out at each step.
-2. [claude-thoughts.md](claude-thoughts.md) — the longer-form brainstorm; especially Section H (what to avoid in front of Mary) and Section I (the skills catalog).
-3. [PLAN.md](PLAN.md) — three skill-build tasks designed to run in parallel.
-4. [inputs/README.md](inputs/README.md) — the synthetic corpus we demo against.
+1. [summary.md](summary.md) — what this project is, how it was built, and the patterns to translate elsewhere.
+2. [index.md](index.md) — a map of the folder.
+3. [inputs/README.md](inputs/README.md) — the synthetic corpus we demo against.
 
 ## What you might be here to do
 
-- **Building one of the three skills** (`/index-transcript`, `/find-negative-cases`, or `/methods-paragraph`). Open PLAN.md, find your task, follow it. The build location for skills is `.claude/skills/<skill-name>/`, which resolves under *this* folder — so the skills travel with the project when shared.
-- **Running the demo end-to-end** after all three skills exist. See the closing section of walkthrough.md.
-- **Extending the brainstorm.** claude-thoughts.md lists about twenty candidate skills; only three are scoped for the workshop demo. The rest are open territory.
+- **Running the demo end-to-end** — `/index-transcript` on the four transcripts, then `/find-negative-cases` on the demo claim, then `/methods-paragraph`. Worked examples are already in each skill's `examples/` directory under `operations/skills/`, and validated outputs live in `outputs/`.
+- **Reading the skills as references** — every skill in `operations/skills/<skill-name>/` ships its `SKILL.md`, supporting templates, and worked examples.
+- **Translating the pattern** — see the "What you can translate this to" section of summary.md.
 
 ## Conventions for this project
 
-- **Skills live in `.claude/skills/<skill-name>/`** — project-scoped, not user-scoped, so they travel with this folder.
-- **Sample data is read-only.** Don't modify files in `inputs/`. New artifacts go in `output/`.
+- **Skills live in `operations/skills/<skill-name>/`** — project-scoped, not user-scoped, so they travel with this folder.
+- **Sample data is read-only.** Don't modify files in `inputs/`. New artifacts go in `outputs/`.
 - **Respondent IDs and pseudonyms are stable.** R001–R004 and their pseudonyms (Tasha, Marisol, Carla, Denise) must be preserved consistently across every skill output, memo, and report.
 - **No emojis in any file.** Workshop-wide convention.
 - **Markdown link syntax for file references** — `[R001](inputs/transcripts/R001-Transcript.md)` — so they're clickable in the IDE.

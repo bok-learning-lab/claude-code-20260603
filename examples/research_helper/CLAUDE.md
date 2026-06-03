@@ -4,8 +4,8 @@ This project turns source research papers (mostly arXiv PDFs) into structured HT
 summaries that harmonize with an ongoing research agenda: **helping instructors and
 students understand how to use LLM harnesses like Claude Code for teaching, learning,
 and research.** Source papers live in `inputs/`. The summary prompt lives in
-`operations-tools-commands/`. Generated HTML — `index.html` plus one file per article —
-goes in `outputs/`.
+`operations/`. Generated HTML — `index.html` plus one file per article — goes in
+`outputs/`. See [summary.md](summary.md) for the full project overview.
 
 ## How to work in this project
 
