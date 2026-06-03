@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Claude Code — Commands & Concepts</title>
+<style>
+/*__FONTS__*/
+/*__HOUSE_STYLE__*/
+  /* ---- PAGE SETUP: landscape 17x11, two columns ---- */
+  @page { size: 17in 11in; margin: 0.5in; }
+  .sheet { width:16in; height:10in; display:grid; grid-template-columns:1fr 1fr; }
+  .col { padding:0.5in 0.55in 0.7in; display:flex; flex-direction:column; }
+  .col.left { border-right:2px solid var(--ink); }
+  .footer { bottom:0.32in; }
+
+  h1 { font-size:36px; }
+  h1 .sub { font-size:12.5px; margin-top:7px; }
+  .lede { font-size:13.5px; margin-top:10px; }
+
+  /* concept rows */
+  .concept { padding:9px 0; border-bottom:1px solid var(--rule); }
+  .concept:first-of-type { border-top:1px solid var(--rule); }
+  .concept .name { font-size:15px; font-weight:900; color:var(--accent); letter-spacing:-0.005em; margin:0 0 3px; }
+  .concept p { margin:0; font-size:12px; line-height:1.42; font-weight:500; }
+  .concept p + p { margin-top:4px; }
+  .concept b { color:var(--ink); font-weight:800; }
+
+  /* commands table */
+  table.glance td.key { font-size:13px; font-family: "Inter", monospace; }
+  table.glance td { font-size:12.5px; line-height:1.42; padding:9px 10px; }
+  table.glance td b { color:var(--ink); font-weight:800; }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="col left">
+    <p class="kicker">Day 3 · Reference</p>
+    <h1>Concepts
+      <span class="sub">The vocabulary that comes up in every Claude Code session — skills, MCPs, CLAUDE.md, subagents, plan mode, slash commands.</span>
+    </h1>
+
+    <p class="lede">
+      Through-line from Day 1: <b>almost all of this is just text.</b> Skills, commands, CLAUDE.md, even most "tools" are text files Claude reads. Get the right text in front of it and it behaves the way you want.
+    </p>
+
+    <div class="beat" style="margin-top:14px;">
+      <div class="concept">
+        <p class="name">CLAUDE.md</p>
+        <p>A plain markdown file that acts as an <b>automatic, project-level system prompt</b>. Every time you start a session in a folder, Claude reads the CLAUDE.md at the root (and walks <i>up</i> the folder tree, reading any others along the way, up to your home directory). Use it to ground the model in <i>your</i> reality — who you are, the kind of work you produce, terms of art in your field, conventions to follow.</p>
+        <p>It's just text. One sentence ("always end with a limerick") changes behavior for an entire folder of work. Edit, <b>save</b>, and <b>open a new session</b> for changes to take effect. Generate a starter one with <i>/init</i>.</p>
+      </div>
+
+      <div class="concept">
+        <p class="name">Skills</p>
+        <p>A <b>reusable, packaged capability</b> you (or Anthropic) can give Claude — a folder with a SKILL.md (instructions Claude follows) plus any supporting files or scripts. Skills load <i>on demand</i>: Claude reads the short description, and when a task matches, it pulls in the full instructions. Saved expertise for recurring jobs ("draft a rubric this way," "format a handout in our house style") so you don't re-explain every time.</p>
+      </div>
+
+      <div class="concept">
+        <p class="name">MCP <span style="color:var(--muted); font-weight:600; font-size:13px; letter-spacing:0;">(Model Context Protocol)</span></p>
+        <p>A <b>standard way to connect Claude to outside tools and data</b> — your files, a database, a web browser, an institutional system. An <i>MCP server</i> exposes a set of actions Claude can call. Where a skill is <i>knowledge</i>, an MCP is usually a <i>connection</i> to something live. You add the ones you need; Claude then has new abilities (e.g., "search this database," "control a browser").</p>
+      </div>
+
+      <div class="concept">
+        <p class="name">Subagents</p>
+        <p>A <b>separate Claude working in the background</b> on a focused task, with its own fresh context window. The main session hands off a job ("research X across these files," "review this draft"), the subagent does the work without cluttering your main conversation, and reports back just the result. Useful for big searches or parallel work — you keep the conclusion, not the mess.</p>
+      </div>
+
+      <div class="concept">
+        <p class="name">Plan Mode</p>
+        <p>A working mode where Claude <b>researches and proposes a plan before changing anything</b>. Toggle it on (Shift+Tab), describe what you want, and Claude reads, thinks, and comes back with a step-by-step plan for your approval — nothing is written or run until you say go. The safest way to start any non-trivial task, and a natural fit for the idea that <i>a good plan is itself the deliverable.</i></p>
+      </div>
+
+      <div class="concept">
+        <p class="name">Slash commands</p>
+        <p><b>Shortcuts you type to control the session</b> rather than to talk to the model. A command is only recognized at the <b>start</b> of a message; anything after it is passed along as arguments. Type <i>/</i> in a session to see what's available.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col right">
+    <p class="kicker">Day 3 · Reference</p>
+    <h1>Commands worth knowing
+      <span class="sub">Notation: <i>&lt;arg&gt;</i> = required · <i>[arg]</i> = optional. The slash-command set you'll actually reach for.</span>
+    </h1>
+
+    <table class="glance">
+      <thead>
+        <tr><th style="width:1.8in;">Command</th><th>What it does</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="key">/init</td>
+          <td>Generate a starter <b>CLAUDE.md</b> so Claude understands the project. <b>Run this first in a new folder/codebase.</b></td>
+        </tr>
+        <tr>
+          <td class="key">/clear</td>
+          <td>Start a <b>fresh context window</b> — drop the current conversation and begin clean. (Cheap, and often the right move when a thread gets long or goes sideways.)</td>
+        </tr>
+        <tr>
+          <td class="key">/compact <i>[instructions]</i></td>
+          <td>Summarize the conversation to <b>free up context</b> without losing the thread. Optionally focus the summary.</td>
+        </tr>
+        <tr>
+          <td class="key">/context <i>[all]</i></td>
+          <td>Visualize where your context window is going, with warnings and tips. Pairs with <i>/compact</i>.</td>
+        </tr>
+        <tr>
+          <td class="key">/rewind</td>
+          <td>Roll <b>code and/or conversation back</b> to an earlier checkpoint. <span style="color:var(--muted); font-weight:600;">(aliases: /checkpoint, /undo)</span></td>
+        </tr>
+        <tr>
+          <td class="key">/resume <i>[session]</i></td>
+          <td>Return to an earlier conversation by ID/name, or open the picker. <span style="color:var(--muted); font-weight:600;">(alias: /continue)</span></td>
+        </tr>
+        <tr>
+          <td class="key">/branch <i>[name]</i></td>
+          <td><b>Fork the current conversation,</b> preserving the original to return to later. <span style="color:var(--muted); font-weight:600;">(alias: /fork)</span></td>
+        </tr>
+        <tr>
+          <td class="key">/btw <i>&lt;question&gt;</i></td>
+          <td>Ask a quick side question <b>without</b> bloating the main conversation history.</td>
+        </tr>
+        <tr>
+          <td class="key">/usage</td>
+          <td>Session cost, plan limits, and activity stats. <span style="color:var(--muted); font-weight:600;">(aliases: /cost, /stats)</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="takehome"><b>Remember:</b> a command is only recognized at the <i>start</i> of a message. Everything after it becomes the command's argument.</p>
+
+    <p class="closing">Source: Claude Code command reference — <i>code.claude.com/docs/llms.txt</i></p>
+  </div>
+
+  <div class="footer">
+    <span>Summer of Claude · Faculty Workshop</span>
+    <span>Bok Center · Learning Lab</span>
+  </div>
+</div>
+</body>
+</html>
