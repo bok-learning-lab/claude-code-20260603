@@ -1,4 +1,4 @@
-# research_helper — folder index
+# research-helper — folder index
 
 A small project that turns source research papers into HTML summaries — each with a neutral summary plus an explicit "implications for teaching, learning & research with LLM harnesses" pass. Start with [summary.md](summary.md); everything else is here for browsing.
 
