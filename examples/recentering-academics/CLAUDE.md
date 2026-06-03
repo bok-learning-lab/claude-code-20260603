@@ -10,7 +10,7 @@ research evidence on grading — plus a concentration's Fields-of-Concentration 
 (or a single course syllabus) into concrete, source-grounded curricular recommendations.
 
 The source materials live in `inputs/`. The prompts that drive each operation live in
-`operations-tools-commands/`. Generated recommendations go in `outputs/`.
+`operations/`. Generated recommendations go in `outputs/`.
 
 ## Inputs
 
@@ -57,8 +57,8 @@ questions and can be run independently.
 
 | Operation | Prompt | Input | Output |
 |---|---|---|---|
-| Concentration-level recommendations | [operations-tools-commands/01-concentration-recommendations-prompt.md](operations-tools-commands/01-concentration-recommendations-prompt.md) | One Fields-of-Concentration profile | `outputs/<slug>-concentration-recommendations.md` |
-| Syllabus-level redesign | [operations-tools-commands/02-syllabus-redesign-prompt.md](operations-tools-commands/02-syllabus-redesign-prompt.md) | One course syllabus | `outputs/<course>-syllabus-redesign.md` |
+| Concentration-level recommendations | [operations/01-concentration-recommendations-prompt.md](operations/01-concentration-recommendations-prompt.md) | One Fields-of-Concentration profile | `outputs/<slug>-concentration-recommendations.md` |
+| Syllabus-level redesign | [operations/02-syllabus-redesign-prompt.md](operations/02-syllabus-redesign-prompt.md) | One course syllabus | `outputs/<course>-syllabus-redesign.md` |
 
 The worked example for both is **Linguistics**: the concentration operation runs on
 [inputs/fields-of-concentration/primary/linguistics.md](inputs/fields-of-concentration/primary/linguistics.md),
